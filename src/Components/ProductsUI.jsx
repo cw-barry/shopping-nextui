@@ -36,9 +36,10 @@ export const ProductsUI = () => {
                     color: '$accents7',
                     fontWeight: '$semibold',
                     fontSize: '$sm',
+                    paddingRight: '1.3rem',
                   }}
                 >
-                  {item.price}
+                  $ {item.price}
                 </Text>
               </Row>
             </Card.Footer>
