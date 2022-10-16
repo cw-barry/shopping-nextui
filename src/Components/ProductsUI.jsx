@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Card, Grid, Row, Text } from '@nextui-org/react';
 
-export const ProductsUI = () => {
-  const [products, setProducts] = useState([]);
+export const ProductsUI = ({ products }) => {
   const [selecteds, setSelecteds] = useState([]);
 
   const handleClick = (id) => {
@@ -13,21 +12,19 @@ export const ProductsUI = () => {
     }
   };
 
-  useEffect(() => {
-    console.log('useEffect');
-    fetch('https://dummyjson.com/products')
-      .then((res) => res.json())
-      .then((data) => {
-        setProducts(data.products);
-        console.log(data.products);
-      })
-      .catch((err) => console.log(err));
-  }, []);
-  console.log(products);
   return (
-    <Grid.Container gap={2} justify="flex-start">
+    <Grid.Container
+      gap={2}
+      justify="flex-start"
+      css={{ p: 0, m: 0, w: '100%' }}
+    >
       {products.map((item, index) => (
-        <Grid xs={6} sm={3} key={index} onClick={() => handleClick(item.id)}>
+        <Grid
+          xs={6}
+          sm={3}
+          key={index}
+          // onClick={() => handleClick(item.id)}
+        >
           <Card
             isPressable
             style={
@@ -38,7 +35,8 @@ export const ProductsUI = () => {
           >
             <Card.Body css={{ p: 0 }}>
               <Card.Image
-                src={item.thumbnail}
+                // src={item.thumbnail}
+                src={item.images[0]}
                 objectFit="cover"
                 width="100%"
                 height={140}
