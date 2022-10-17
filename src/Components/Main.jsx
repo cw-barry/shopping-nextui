@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import { ProductsUI } from './ProductsUI';
 import Categories from './Categories';
+import Search from './Search';
 
 const Main = () => {
   const [data, setData] = useState([]);
@@ -45,6 +46,7 @@ const Main = () => {
     <div>
       <h1 style={{ fontSize: '2rem' }}>Clarusway Shopping</h1>
       <Categories {...{ categories, handleFilter }} />
+      <Search {...{ data, setProducts }} />
       <ProductsUI {...{ products }} />
     </div>
   );
