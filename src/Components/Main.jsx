@@ -9,6 +9,7 @@ const Main = () => {
   const [data, setData] = useState([]);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const [price, setPrice] = useState({});
 
   useEffect(() => {
     // https://api.escuelajs.co/api/v1/products
@@ -36,6 +37,7 @@ const Main = () => {
   }, [data]);
 
   const handleFilter = (selected) => {
+    setPrice({ min: '', max: '' });
     if (selected === 'all') {
       setProducts(data);
     } else {
@@ -49,7 +51,7 @@ const Main = () => {
       <Categories {...{ categories, handleFilter }} />
       <Grid.Container gap={2} justify="center">
         <Grid xs={2} direction="column" justify="flex-start">
-          <Search {...{ data, setProducts }} />
+          <Search {...{ data, setProducts, price, setPrice }} />
         </Grid>
         <Grid xs={10}>
           <ProductsUI {...{ products }} />

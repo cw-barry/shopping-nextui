@@ -1,9 +1,9 @@
 import { Input, Spacer, Grid, Text } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-export default function Search({ data, setProducts }) {
+export default function Search({ data, setProducts, price, setPrice }) {
   const [query, setQuery] = useState('');
-  const [price, setPrice] = useState({});
+  // const [price, setPrice] = useState({});
   const handlePrice = (e) => {
     setPrice({ ...price, [e.target.name]: e.target.value });
   };
@@ -52,6 +52,7 @@ export default function Search({ data, setProducts }) {
             step={10}
             onChange={handlePrice}
             name="min"
+            value={price?.min || ''}
           />
           <Input
             name="max"
@@ -64,6 +65,7 @@ export default function Search({ data, setProducts }) {
             color="primary"
             size="sm"
             aria-label="max"
+            value={price?.max || ''}
           />
         </Grid>
       </Grid.Container>
