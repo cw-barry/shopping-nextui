@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Grid } from '@nextui-org/react';
 
 import { ProductsUI } from './ProductsUI';
 import Categories from './Categories';
@@ -46,8 +47,14 @@ const Main = () => {
     <div>
       <h1 style={{ fontSize: '2rem' }}>Clarusway Shopping</h1>
       <Categories {...{ categories, handleFilter }} />
-      <Search {...{ data, setProducts }} />
-      <ProductsUI {...{ products }} />
+      <Grid.Container gap={2} justify="center">
+        <Grid xs={2} direction="column" justify="flex-start">
+          <Search {...{ data, setProducts }} />
+        </Grid>
+        <Grid xs={10}>
+          <ProductsUI {...{ products }} />
+        </Grid>
+      </Grid.Container>
     </div>
   );
 };
