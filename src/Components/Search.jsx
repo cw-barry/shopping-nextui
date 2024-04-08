@@ -1,7 +1,14 @@
 import { Input, Spacer, Grid, Text } from '@nextui-org/react';
 import { useEffect } from 'react';
 import { useState } from 'react';
-export default function Search({ data, setProducts, price, setPrice }) {
+export default function Search({
+  data,
+  setProducts,
+  price,
+  setPrice,
+  filter,
+  setFilter,
+}) {
   const [query, setQuery] = useState('');
   // const [price, setPrice] = useState({});
   const handlePrice = (e) => {
@@ -9,12 +16,14 @@ export default function Search({ data, setProducts, price, setPrice }) {
   };
 
   useEffect(() => {
-    setProducts(
-      data.filter(
-        (item) =>
-          item.price > (price?.min || 0) && item.price < (price?.max || 100000)
-      )
-    );
+    console.log('price update');
+    setFilter({ ...filter, min: price?.min || 0, max: price?.max || 100000 });
+    // setProducts(
+    //   data.filter(
+    //     (item) =>
+    //       item.price > (price?.min || 0) && item.price < (price?.max || 100000)
+    //   )
+    // );
   }, [price]);
 
   return (
@@ -28,11 +37,12 @@ export default function Search({ data, setProducts, price, setPrice }) {
         value={query}
         onChange={(e) => {
           setQuery(e.target.value);
-          setProducts(
-            data.filter((item) =>
-              item.title.toLowerCase().includes(e.target.value.toLowerCase())
-            )
-          );
+          setFilter({ ...filter, search: e.target.value });
+          // setProducts(
+          //   data.filter((item) =>
+          //     item.title.toLowerCase().includes(e.target.value.toLowerCase())
+          //   )
+          // );
         }}
       />
       <Spacer y={0.5} />

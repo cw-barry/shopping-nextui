@@ -10,7 +10,7 @@ const Categories = ({ categories, handleFilter }) => {
             {categories.map((item, index) => (
               <Button
                 key={index}
-                onClick={() => handleFilter(categories[index])}
+                onPress={() => handleFilter(categories[index])}
               >
                 {item.charAt(0).toUpperCase() + item.slice(1)}
               </Button>
